@@ -138,13 +138,18 @@ class BTWJarReplacer implements MinecraftJarProcessor<Spec> {
 	void processJar(java.nio.file.Path jar, Spec spec, ProcessorContext context) throws IOException {
 		// Replace the Minecraft jar with the custom one from BTW_dev.
 		// This is just a straight up file replacement, no remapping or anything.
-		if (!Files.exists(Paths.get(path, "build/BTW_dev/BTW_dev.zip"))) {
+		String osFilePath = "";
+		if (System.getProperty("os.name") == "Linux") {
+			osFilePath = "/"
+		}
+
+		if (!Files.exists(Paths.get(path, osFilePath + "build/BTW_dev/BTW_dev.zip"))) {
 			// Print a warning if the BTW_dev zip doesn't exist.
 			System.err.println("BTW_dev zip not found, skipping BTWJarReplacer")
 		} else {
-			Files.copy(Paths.get(path, "build/BTW_dev/BTW_dev.zip"), jar, StandardCopyOption.REPLACE_EXISTING)
+			Files.copy(Paths.get(path, osFilePath + "build/BTW_dev/BTW_dev.zip"), jar, StandardCopyOption.REPLACE_EXISTING)
 			// Add Javadocs
-			Files.copy(Paths.get(path, "build/BTW_dev/BTW_dev-javadoc.jar"), jar.resolveSibling(jar.getFileName().toString().replace(".jar", "-javadoc.jar")), StandardCopyOption.REPLACE_EXISTING)
+			Files.copy(Paths.get(path, osFilePath + "build/BTW_dev/BTW_dev-javadoc.jar"), jar.resolveSibling(jar.getFileName().toString().replace(".jar", "-javadoc.jar")), StandardCopyOption.REPLACE_EXISTING)
 		}
 	}
 

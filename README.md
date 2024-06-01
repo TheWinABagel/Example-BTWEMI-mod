@@ -7,11 +7,21 @@
 - [More info](#more-info)
 - [License](#license)
 
-## Quick start guide
+## Quick start guide (Windows)
 
 * Clone this repository
 * Download the according BTW-CE 3.0+ *intermediary* release
 * Drag&Drop the intermediary .zip file onto the *install.bat*
+* Wait till it fully finishes
+* Run the gradle task *build* and then *runClient*
+
+## Quick start guide (Linux)
+
+* Clone this repository
+* Download the according BTW-CE 3.0+ *intermediary* release
+* Drag&Drop the intermediary .zip file into the base mod folder
+* Open a terminal, cd to the base mod folder and run install.sh with `sudo sh ./install.sh` 
+  * Note: The default file name for the intermediary .zip file is `BTW-CE-Intermediary-Distribution.zip`. You can change it by editing the `INTERMEDIARY_FILE_NAME` variable in the install.sh.
 * Wait till it fully finishes
 * Run the gradle task *build* and then *runClient*
 
